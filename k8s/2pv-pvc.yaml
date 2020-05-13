@@ -15,8 +15,8 @@ spec:
     - ReadWriteMany
   storageClassName: org1-pv
   nfs:
-    path: /home/hyper/opt/share/crypto-config/peerOrganizations/org1
-    server: 192.168.1.xxx  #nfs server ip
+    path: /opt/share/crypto-config/peerOrganizations/org1
+    server: 10.0.0.14
 
 ---
 apiVersion: v1
@@ -44,8 +44,8 @@ spec:
        - ReadWriteMany
     storageClassName: org1-artifacts-pv
     nfs: 
-      path: /home/hyper/opt/share/channel-artifacts
-      server: 192.168.1.xxx #nfs server ip
+      path: /opt/share/channel-artifacts
+      server: 10.0.0.14
 ---
 
 apiVersion: v1
@@ -74,8 +74,8 @@ spec:
        - ReadWriteMany
     storageClassName: org1-chaincode-pv
     nfs: 
-      path: /home/hyper/opt/share/chaincode
-      server: 192.168.1.xxx #nfs server ip
+      path: /opt/share/chaincode
+      server: 10.0.0.14
 ---
 
 apiVersion: v1

@@ -1,26 +1,13 @@
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: fabrick8s
-  name: docker
-  labels:
-    run: docker
-spec:
-  selector:
-    name: docker
-  ports:
-  - protocol: TCP
-    targetPort: 2375
-    port: 2375
----
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: fabrick8s
   name: docker-dind
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      name: docker
   template:
     metadata:
       labels:
@@ -43,3 +30,18 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/docker
           name: dockervolume
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: fabrick8s
+  name: docker
+  labels:
+    run: docker
+spec:
+  selector:
+    name: docker
+  ports:
+  - protocol: TCP
+    targetPort: 2375
+    port: 2375

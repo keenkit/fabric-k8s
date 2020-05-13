@@ -1,15 +1,19 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
+# apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-   namespace: fabrick8s
-   name: cli
+  namespace: fabrick8s
+  name: cli
 spec:
   replicas: 1
   strategy: {}
+  selector:
+    matchLabels:
+      name: cli  
   template:
     metadata:
       labels:
-       name: cli
+        name: cli
     spec:
       nodeSelector:
         id: peer
@@ -32,7 +36,8 @@ spec:
           # - name: CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE
             # value: "bridge"
           - name: CORE_VM_ENDPOINT
-            value: tcp://docker:2375
+            # value: tcp://docker:2375
+            value: unix:///host/var/run/docker.sock
           - name: CORE_PEER_NETWORKID
             value: nid1
           - name: GOPATH

@@ -14,8 +14,8 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    path: /home/hyper/opt/share/crypto-config/ordererOrganizations/orgorderer1
-    server: 192.168.1.xxx  #nfs server ip
+    path: /opt/share/crypto-config/ordererOrganizations/orgorderer1
+    server: 10.0.0.14
 
 ---
 apiVersion: v1
